@@ -1,7 +1,7 @@
-.navLink {
+.base {
   color: black;
 }
 
-.activeNavLink {
+.active {
   color: red;
 }

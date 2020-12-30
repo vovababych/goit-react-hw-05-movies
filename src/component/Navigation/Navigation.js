@@ -5,21 +5,12 @@ function Navigation() {
   return (
     <ul>
       <li>
-        <NavLink
-          exact
-          to="/"
-          className={s.navLink}
-          activeClassName={s.activeNavLink}
-        >
+        <NavLink exact to="/" className={s.base} activeClassName={s.active}>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/movies"
-          className={s.navLink}
-          activeClassName={s.activeNavLink}
-        >
+        <NavLink to="/movies" className={s.base} activeClassName={s.active}>
           Movies{' '}
         </NavLink>
       </li>
