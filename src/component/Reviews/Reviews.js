@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
-import * as FetchMovies from '../services/fetchMovies';
+import * as FetchMovies from '../../services/Api';
+import s from './Reviews.module.css';
 
 export default function Reviews({ match }) {
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState('');
+  console.log('review', reviews);
 
   useEffect(() => {
     FetchMovies.FetchReviews(match.params.movieId).then(setReviews);
   }, [match.params.movieId]);
 
-  console.log('reviews', reviews);
-
   return (
     <>
-      <h2>Reviews</h2>
+      <h2 className={s.title}>Reviews</h2>
       <ul>
         {reviews &&
           reviews.map(review => (
             <li key={review.id}>
-              <p>{review.author}</p>
-              <p>{review.length > 0 ? review.content : 'No review'}</p>
+              <h3>{review.author}</h3>
+              <p>{review.content ? review.content : 'No review'}</p>
             </li>
           ))}
       </ul>

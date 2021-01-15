@@ -1,40 +1,35 @@
 import axios from 'axios';
-const API_KEY = 'api_key=81f248d3c9154788229a5419bb33091a';
 
-function FetchAllMovies() {
-  return axios
-    .get(`https://api.themoviedb.org/3/trending/all/day?${API_KEY}`)
-    .then(res => res.data);
+const AXIOS = axios.create({
+  baseURL: 'https://api.themoviedb.org/3/',
+  params: {
+    api_key: '81f248d3c9154788229a5419bb33091a',
+    language: 'en-US',
+  },
+});
+
+function FetchInTrendMovies() {
+  return AXIOS.get(`trending/all/day`).then(res => res.data);
 }
 
-function FetchSearchMovies(searchQuery) {
-  return axios
-    .get(
-      `https://api.themoviedb.org/3/search/movie?${API_KEY}&query=${searchQuery}&page=1`,
-    )
-    .then(res => res.data);
+function FetchSearchMovies(query) {
+  return AXIOS.get(`search/movie?&query=${query}&page=1`).then(res => res.data);
 }
 
 function FetchAboutMovie(movieId) {
-  return axios
-    .get(`https://api.themoviedb.org/3/movie/${movieId}?${API_KEY}`)
-    .then(res => res.data);
+  return AXIOS.get(`movie/${movieId}?`).then(res => res.data);
 }
 
 function FetchActors(movieId) {
-  return axios
-    .get(`https://api.themoviedb.org/3/movie/${movieId}/credits?${API_KEY}`)
-    .then(res => res.data.cast);
+  return AXIOS.get(`movie/${movieId}/credits?`).then(res => res.data.cast);
 }
 
 function FetchReviews(movieId) {
-  return axios
-    .get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?${API_KEY}`)
-    .then(res => res.data.results);
+  return AXIOS.get(`movie/${movieId}/reviews?`).then(res => res.data.results);
 }
 
 export {
-  FetchAllMovies,
+  FetchInTrendMovies,
   FetchSearchMovies,
   FetchAboutMovie,
   FetchActors,
