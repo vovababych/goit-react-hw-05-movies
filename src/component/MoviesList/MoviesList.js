@@ -13,7 +13,9 @@ export default function MoviesList({ movies }) {
               className={s.link}
               to={{
                 pathname: `/movies/${movie.id}`,
-                state: { from: location },
+                state: {
+                  from: location,
+                },
               }}
             >
               {movie.title ?? movie.name}
